@@ -18,7 +18,6 @@ public class AsteroidsSpawnController : MonoBehaviour
     
     private void Start()
     {
-        StartSpawning();
         ResetAsteroids();
         ResetAsteroidMoverSpeed();
     }

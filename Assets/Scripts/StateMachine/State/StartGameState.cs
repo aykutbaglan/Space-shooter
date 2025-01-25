@@ -7,6 +7,8 @@ public class StartGameState : State
 {
     [SerializeField] private Button startButton;
     [SerializeField] private StateMachine stateMachine;
+    [SerializeField] private AsteroidsSpawnController asteroidSpawnController;
+    [SerializeField] private PlayerController playerController;
 
 
     private void OnEnable()
@@ -20,7 +22,8 @@ public class StartGameState : State
     public override void OnEnter()
     {
         base.OnEnter();
-        GameManager.GamePause();
+        asteroidSpawnController.StopSpawning();
+        playerController.enabled = false;
     }
     public override void OnExit()
     {

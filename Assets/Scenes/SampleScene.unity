@@ -161,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d9808401c68af274a8edfbed3d1b53c7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d9808401c68af274a8edfbed3d1b53c7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -783,10 +783,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Welcome To The Game
+  m_text: Space Shooter
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 845563edcb74edc4a85d60457eafa054, type: 2}
+  m_sharedMaterial: {fileID: 5425538801397909935, guid: 845563edcb74edc4a85d60457eafa054,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -810,8 +811,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80
-  m_fontSizeBase: 80
+  m_fontSize: 120
+  m_fontSizeBase: 120
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -890,6 +891,58 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 98885007}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &499426494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 499426496}
+  - component: {fileID: 499426495}
+  m_Layer: 0
+  m_Name: ColorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &499426495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499426494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32391eac6fd0af46a164112244aecf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colors:
+  - {r: 0.2476415, g: 0.3252902, b: 0.5, a: 1}
+  - {r: 0.745283, g: 0.2214756, b: 0.22969207, a: 1}
+  - {r: 0.6037736, g: 0.3047348, b: 0.57093805, a: 1}
+  - {r: 0.31043077, g: 0.6037736, b: 0.595721, a: 1}
+  startCanvasTxt: {fileID: 356898783}
+  endCanvasTxt: {fileID: 1143593801}
+  colorChangeTime: 1
+--- !u!4 &499426496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499426494}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.4278324, y: 19.44588, z: -5.3588142}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &538018099
 GameObject:
@@ -1793,8 +1846,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Game Over
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 685f7fa58710bf64eb24de8fc2cea38b, type: 2}
+  m_sharedMaterial: {fileID: -8869751065654599176, guid: 685f7fa58710bf64eb24de8fc2cea38b,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2015,6 +2069,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 1429656483}
   asteroidsSpawnController: {fileID: 1758759272}
   playerShip: {fileID: 98885004}
+  playerController: {fileID: 98885008}
 --- !u!4 &1352214609
 Transform:
   m_ObjectHideFlags: 0
@@ -2810,6 +2865,8 @@ MonoBehaviour:
   canvasGroup: {fileID: 1660199772}
   startButton: {fileID: 538018101}
   stateMachine: {fileID: 1749565691}
+  asteroidSpawnController: {fileID: 1758759272}
+  playerController: {fileID: 98885008}
 --- !u!4 &1801053888
 Transform:
   m_ObjectHideFlags: 0
@@ -3348,3 +3405,4 @@ SceneRoots:
   - {fileID: 1749565692}
   - {fileID: 1047899724}
   - {fileID: 1758759273}
+  - {fileID: 499426496}
