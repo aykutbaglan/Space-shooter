@@ -296,7 +296,7 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
@@ -330,6 +330,7 @@ MonoBehaviour:
     zMax: 5
   shot: {fileID: 6141410218444267540, guid: 5909764a995f36b46962934feb532fe4, type: 3}
   shotSpawn: {fileID: 442988940}
+  healt: 100
   speed: 5
   tilt: -5
   nextFire: 0
@@ -892,6 +893,82 @@ Transform:
   m_Children: []
   m_Father: {fileID: 98885007}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &451402953
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1093887268274868, guid: 61acbff360156435c88550bac7aa1208, type: 3}
+      propertyPath: m_Name
+      value: Enemy Ship
+      objectReference: {fileID: 0}
+    - target: {fileID: 1093887268274868, guid: 61acbff360156435c88550bac7aa1208, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280819151522346, guid: 61acbff360156435c88550bac7aa1208, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280819151522346, guid: 61acbff360156435c88550bac7aa1208, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280819151522346, guid: 61acbff360156435c88550bac7aa1208, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280819151522346, guid: 61acbff360156435c88550bac7aa1208, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280819151522346, guid: 61acbff360156435c88550bac7aa1208, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280819151522346, guid: 61acbff360156435c88550bac7aa1208, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280819151522346, guid: 61acbff360156435c88550bac7aa1208, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280819151522346, guid: 61acbff360156435c88550bac7aa1208, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280819151522346, guid: 61acbff360156435c88550bac7aa1208, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280819151522346, guid: 61acbff360156435c88550bac7aa1208, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869098278393626014, guid: 61acbff360156435c88550bac7aa1208,
+        type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869098278393626014, guid: 61acbff360156435c88550bac7aa1208,
+        type: 3}
+      propertyPath: bulletSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869098278393626014, guid: 61acbff360156435c88550bac7aa1208,
+        type: 3}
+      propertyPath: endGameState
+      value: 
+      objectReference: {fileID: 771095443}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 61acbff360156435c88550bac7aa1208, type: 3}
 --- !u!1 &499426494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,9 +1923,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Game Over
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 685f7fa58710bf64eb24de8fc2cea38b, type: 2}
-  m_sharedMaterial: {fileID: -8869751065654599176, guid: 685f7fa58710bf64eb24de8fc2cea38b,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2037,6 +2113,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1290437056 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4869098278393626014, guid: 61acbff360156435c88550bac7aa1208,
+    type: 3}
+  m_PrefabInstance: {fileID: 451402953}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5c4cef13c15cbc41ad097d10097735b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1352214607
 GameObject:
   m_ObjectHideFlags: 0
@@ -2806,6 +2894,7 @@ MonoBehaviour:
   endGameState: {fileID: 771095443}
   asteroidMover: {fileID: 3162376756086284763, guid: ca1353930d6853146be53af51592a657,
     type: 3}
+  enemyShipController: {fileID: 1290437056}
 --- !u!4 &1758759273
 Transform:
   m_ObjectHideFlags: 0
@@ -3406,3 +3495,4 @@ SceneRoots:
   - {fileID: 1047899724}
   - {fileID: 1758759273}
   - {fileID: 499426496}
+  - {fileID: 451402953}

@@ -15,23 +15,30 @@ public class AsteroidsSpawnController : MonoBehaviour
     [SerializeField] private ScoreManager scoreManager;
     [SerializeField] private EndGameState endGameState;
     [SerializeField] private Mover asteroidMover;
+    [SerializeField] private EnemyShipController enemyShipController;
     
     private void Start()
     {
         ResetAsteroids();
         ResetAsteroidMoverSpeed();
+        if (enemyShipController.enemyShipGo != null)
+            {
+                enemyShipController.enemyShipGo.SetActive(false);
+            }
     }
     private void Update()
     {
         if (endGameState.gameOver && _spawnCoroutine != null)
         {
             StopSpawning();
+            
         }
     }
     public IEnumerator SpawnAsteroids()
     {
         yield return new WaitForSeconds(_startSpawn);
         int waveCount = _spawnCount;
+        Vector3 astroidScale = asteroids.transform.localScale;
         while (true)
         {
             for (int i = 0; i < _spawnCount; i++)
@@ -42,12 +49,23 @@ public class AsteroidsSpawnController : MonoBehaviour
                 GameObject asteroidInstance = Instantiate(asteroids, spawnPosition, spawnRotation);
                 asteroidInstance.transform.SetParent(base.transform);
 
+                asteroidInstance.transform.localScale = astroidScale;
+
                 yield return new WaitForSeconds(_spawnWait);
 
             }
             yield return new WaitForSeconds(_waveWait);
+            //waveCount = _spawnCount;
             _spawnCount += 5;
              asteroidMover.speed -= 1;
+            if (_spawnCount == 15)
+            {
+                if (enemyShipController.enemyShipGo != null)
+                {
+                   enemyShipController.enemyShipGo.SetActive(true);
+                }
+            }
+            astroidScale += new Vector3(0.1f, 0.1f, 0.1f);
             if (endGameState.gameOver == true)
             {
                 break;

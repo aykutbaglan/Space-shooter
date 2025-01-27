@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public Boundary boundary;
     public GameObject shot;
     public GameObject shotSpawn;
+    public int healt = 100;
     [SerializeField] int speed;
     [SerializeField] int tilt;
     [SerializeField] float nextFire;
@@ -55,5 +56,17 @@ public class PlayerController : MonoBehaviour
         physic.position = position;
 
         physic.rotation = Quaternion.Euler(0, 0, physic.velocity.x * tilt);
+    }
+    public void TakeHealt(int damage)
+    {
+        Debug.Log($"TakeHealt called with damage: {damage}");
+        healt -= damage;
+        Debug.Log($"Player health after damage: {healt}"); // Can miktarını kontrol edin
+
+        if (healt <= 0)
+        {
+            Destroy(gameObject);
+            Debug.Log("destroy player");
+        }
     }
 }

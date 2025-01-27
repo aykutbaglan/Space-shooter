@@ -13,6 +13,14 @@ public class InGameState : State
         GameManager.GameResume();
         asteroidsSpawnController.ResetAsteroids();
         asteroidsSpawnController.StartSpawning();
+        //if (playerController.healt <= 0) canýmýz 0 deðil ise playership setactive ini aç 0 ise kapat
+        //{
+        // playership.setActive(false);
+        //}
+        //else
+        //{
+        //    playerShip.SetActive(false);
+        //}
         playerShip.SetActive(true);
         playerController.enabled = true;
         //if (playerShip == null)

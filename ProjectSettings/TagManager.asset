@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - StateMachine
   - Asteroids
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
