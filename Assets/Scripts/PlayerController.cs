@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int tilt;
     [SerializeField] float nextFire;
     [SerializeField] float fireRate;
+    [SerializeField] private StateMachine stateMachine;
     private Rigidbody physic;
     private AudioSource audioPlayer;
 
@@ -65,7 +66,8 @@ public class PlayerController : MonoBehaviour
 
         if (healt <= 0)
         {
-            Destroy(gameObject);
+            playerShipGo.SetActive(false);
+            stateMachine.TransitionToNextState();
             Debug.Log("destroy player");
         }
     }
