@@ -25,14 +25,14 @@ public class DestroyByContact : MonoBehaviour
             return;
         }
         Instantiate(explosion, transform.position, transform.rotation);
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
             Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
             playerShip.SetActive(false);
             //(endGameState as EndGameState).GameOver();
             stateMachine.ChangeState(endGameState);
         }
-        else if (other.tag == "Asteroid")
+        if (other.tag == "Asteroids")
         {
             scoreManager.score = 0;
         }

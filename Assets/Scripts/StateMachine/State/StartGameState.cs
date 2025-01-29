@@ -10,7 +10,6 @@ public class StartGameState : State
     [SerializeField] private AsteroidsSpawnController asteroidSpawnController;
     [SerializeField] private PlayerController playerController;
 
-
     private void OnEnable()
     {
         startButton.onClick.AddListener(StartButtonOnClick);

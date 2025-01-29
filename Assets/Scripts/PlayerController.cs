@@ -15,12 +15,13 @@ public class PlayerController : MonoBehaviour
     public Boundary boundary;
     public GameObject shot;
     public GameObject shotSpawn;
-    public int healt = 100;
+    public int playerHealt = 100;
     [SerializeField] int speed;
     [SerializeField] int tilt;
     [SerializeField] float nextFire;
     [SerializeField] float fireRate;
     [SerializeField] private StateMachine stateMachine;
+    [SerializeField] private DestroyByContact destroyByContact;
     private Rigidbody physic;
     private AudioSource audioPlayer;
 
@@ -58,17 +59,32 @@ public class PlayerController : MonoBehaviour
 
         physic.rotation = Quaternion.Euler(0, 0, physic.velocity.x * tilt);
     }
+    public void PlayerDie()
+    {
+        if (destroyByContact.explosion != null)
+        {
+            Instantiate(destroyByContact.playerExplosion, transform.position, transform.rotation);
+        }
+        else
+        {
+            Debug.LogError("Explosion is not assigned in playerController!");
+        }
+        playerShipGo.SetActive(false);
+    }
     public void TakeHealt(int damage)
     {
-        Debug.Log($"TakeHealt called with damage: {damage}");
-        healt -= damage;
-        Debug.Log($"Player health after damage: {healt}"); // Can miktarını kontrol edin
+        //Debug.Log($"TakeHealt called with damage: {damage}");
+        playerHealt -= damage;
+        //Debug.Log($"Player health after damage: {healt}"); // Can miktarını kontrol edin
 
-        if (healt <= 0)
+        if (playerHealt <= 0)
         {
-            playerShipGo.SetActive(false);
+            //playerShipGo.SetActive(false);
+            PlayerDie();
             stateMachine.TransitionToNextState();
-            Debug.Log("destroy player");
+            audioPlayer.Play();
+            //Debug.Log("destroy player");
         }
     }
+
 }

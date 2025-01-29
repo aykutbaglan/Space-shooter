@@ -11,5 +11,20 @@ public class Mover : MonoBehaviour
     {
         physic = GetComponent<Rigidbody>();
         physic.velocity = transform.forward * speed;
-    }   
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            if (other.CompareTag("Asteroids"))
+            {
+                return;
+            }
+            EnemyShipController enemy = other.GetComponent<EnemyShipController>();
+            if (enemy != null)
+            {
+                enemy.TakeHealt(20,gameObject);
+            }
+        }
+    }
 }

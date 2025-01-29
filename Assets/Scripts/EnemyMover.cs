@@ -19,6 +19,11 @@ public class EnemyMover : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        //if (other.CompareTag("Asteroids"))
+        //{
+        //    Debug.Log("asdasdasd");
+        //    return;
+        //}
         Debug.Log($"Collision with: {other.gameObject.name}"); // Çarpýþma mesajý
         if (other.CompareTag("Player"))
         {
@@ -28,7 +33,7 @@ public class EnemyMover : MonoBehaviour
             {
                 Debug.Log("Player hit by enemy bullet!");
                 player.TakeHealt(20);
-            if (player.healt <= 0 && endGameState != null)
+            if (player.playerHealt <= 0 && endGameState != null)
             {
                 endGameState.OnEnter();
             }

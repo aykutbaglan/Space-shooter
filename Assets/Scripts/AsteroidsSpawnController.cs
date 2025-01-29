@@ -31,7 +31,6 @@ public class AsteroidsSpawnController : MonoBehaviour
         if (endGameState.gameOver && _spawnCoroutine != null)
         {
             StopSpawning();
-            
         }
     }
     public IEnumerator SpawnAsteroids()
@@ -52,10 +51,10 @@ public class AsteroidsSpawnController : MonoBehaviour
                 asteroidInstance.transform.localScale = astroidScale;
 
                 yield return new WaitForSeconds(_spawnWait);
-
             }
+
             yield return new WaitForSeconds(_waveWait);
-            //waveCount = _spawnCount;
+
             _spawnCount += 5;
              asteroidMover.speed -= 1;
             if (_spawnCount == 15)
@@ -65,7 +64,7 @@ public class AsteroidsSpawnController : MonoBehaviour
                    enemyShipController.enemyShipGo.SetActive(true);
                 }
             }
-            astroidScale += new Vector3(0.1f, 0.1f, 0.1f);
+              astroidScale += new Vector3(0.1f, 0.1f, 0.1f);
             if (endGameState.gameOver == true)
             {
                 break;
