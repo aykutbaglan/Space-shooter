@@ -9,16 +9,14 @@ public class EndGameState : State
     public TMP_Text gameOverTxt;
     public TMP_Text restartTxt;
     public TMP_Text quitTxt;
-    public bool gameOver;
-    public bool restart;
     [SerializeField] private Button restartButton;
     [SerializeField] private StateMachine stateMachine;
     [SerializeField] private AsteroidsSpawnController asteroidsSpawnController;
     [SerializeField] private DestroyAsteroidsInScene destroyAsteroidsInScene;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private ScoreManager scoreManager;
-    [SerializeField] private Mover asteroidMover;
     [SerializeField] private EnemyShipController enemyShipController;
+    [SerializeField] private GameManager gameManager;
     private void OnEnable()
     {
         restartButton.onClick.AddListener(RestartButtonOnClick);
@@ -32,6 +30,7 @@ public class EndGameState : State
         base.OnEnter();
         GameOver();
         enemyShipController.FirePause();
+        //Game over sesini oynat.
     }
     public override void OnExit() 
     {
@@ -39,7 +38,7 @@ public class EndGameState : State
     }
     public void GameOver()
     {
-        gameOver = true;
+        gameManager.gameOver = true;
         quitTxt.text = "Press 'Q' for Quit";
         restartTxt.text = "Press 'R' for Restart";
         gameOverTxt.text = "Game Over";
@@ -51,7 +50,7 @@ public class EndGameState : State
         scoreManager.ResetScore();
         destroyAsteroidsInScene.DestroyAsteroids();
         asteroidsSpawnController.ResetAsteroidMoverSpeed();
-        restart = true;
+        gameManager.restart = true;
         stateMachine.transitionToSpecificState(1);
         playerController.playerShipTr.position = new Vector3(0f, playerController.playerShipTr.position.y, 0);
         enemyShipController.gameObject.SetActive(false);

@@ -7,14 +7,15 @@ using UnityEngine.PlayerLoop;
 public class AsteroidsSpawnController : MonoBehaviour
 {
     public Coroutine _spawnCoroutine;
-    [SerializeField] private GameObject asteroids;
+    public GameObject asteroids;
     [SerializeField] private int _spawnCount;
     [SerializeField] private float _startSpawn;
     [SerializeField] private float _spawnWait;
     [SerializeField] private float _waveWait;
     [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private EndGameState endGameState;
-    [SerializeField] private Mover asteroidMover;
+    [SerializeField] private AsteroidMover asteroidMover;
     [SerializeField] private EnemyShipController enemyShipController;
     
     private void Start()
@@ -28,7 +29,7 @@ public class AsteroidsSpawnController : MonoBehaviour
     }
     private void Update()
     {
-        if (endGameState.gameOver && _spawnCoroutine != null)
+        if (gameManager.gameOver && _spawnCoroutine != null)
         {
             StopSpawning();
         }
@@ -64,8 +65,8 @@ public class AsteroidsSpawnController : MonoBehaviour
                    enemyShipController.enemyShipGo.SetActive(true);
                 }
             }
-              astroidScale += new Vector3(0.1f, 0.1f, 0.1f);
-            if (endGameState.gameOver == true)
+              astroidScale += new Vector3(-0.05f, -0.05f, -0.05f);
+            if (gameManager.gameOver == true)
             {
                 break;
             }
@@ -93,8 +94,8 @@ public class AsteroidsSpawnController : MonoBehaviour
         endGameState.gameOverTxt.text = "";
         endGameState.restartTxt.text = "";
         endGameState.quitTxt.text = "";
-        endGameState.gameOver = false;
-        endGameState.restart = false;
+        gameManager.gameOver = false;
+        gameManager.restart = false;
     }
     public void ResetAsteroidMoverSpeed()
     {

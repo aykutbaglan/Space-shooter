@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public bool gameOver;
+    public bool restart;
     [SerializeField] EndGameState endGameState;
     private void Update()
     {

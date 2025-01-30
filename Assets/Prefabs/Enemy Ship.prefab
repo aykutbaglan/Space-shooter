@@ -282,9 +282,12 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6141410218444267540, guid: e77f8b17a49ad1d4c8e2686f5298b417,
     type: 3}
   firePoint: {fileID: 4514590413945052}
-  fireRate: 2
-  bulletSpeed: 2
+  fireRate: 1
+  bulletSpeed: 20
   endGameState: {fileID: 0}
+  stateMachine: {fileID: 0}
+  destroyByContact: {fileID: 0}
+  enemyHealt: 100
 --- !u!1 &1351048805008026
 GameObject:
   m_ObjectHideFlags: 0
