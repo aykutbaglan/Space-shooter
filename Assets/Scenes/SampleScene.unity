@@ -917,7 +917,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4280819151522346, guid: 61acbff360156435c88550bac7aa1208, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.48
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4280819151522346, guid: 61acbff360156435c88550bac7aa1208, type: 3}
       propertyPath: m_LocalRotation.w
@@ -949,6 +949,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4869098278393626014, guid: 61acbff360156435c88550bac7aa1208,
         type: 3}
+      propertyPath: enemyShipTr
+      value: 
+      objectReference: {fileID: 1290437065}
+    - target: {fileID: 4869098278393626014, guid: 61acbff360156435c88550bac7aa1208,
+        type: 3}
       propertyPath: endGameState
       value: 
       objectReference: {fileID: 771095443}
@@ -962,6 +967,11 @@ PrefabInstance:
       propertyPath: destroyByContact
       value: 
       objectReference: {fileID: 1758759275}
+    - target: {fileID: 4869098278393626014, guid: 61acbff360156435c88550bac7aa1208,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 98885008}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2147,6 +2157,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+--- !u!4 &1290437065 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4280819151522346, guid: 61acbff360156435c88550bac7aa1208,
+    type: 3}
+  m_PrefabInstance: {fileID: 451402953}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1352214607
 GameObject:
   m_ObjectHideFlags: 0

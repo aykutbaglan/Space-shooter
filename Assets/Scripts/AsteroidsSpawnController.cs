@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -23,9 +24,10 @@ public class AsteroidsSpawnController : MonoBehaviour
         ResetAsteroids();
         ResetAsteroidMoverSpeed();
         if (enemyShipController.enemyShipGo != null)
-            {
-                enemyShipController.enemyShipGo.SetActive(false);
-            }
+        {
+             enemyShipController.enemyShipGo.SetActive(false);
+            enemyShipController.enemyShipTr.DOKill();
+        }
     }
     private void Update()
     {
@@ -63,6 +65,7 @@ public class AsteroidsSpawnController : MonoBehaviour
                 if (enemyShipController.enemyShipGo != null)
                 {
                    enemyShipController.enemyShipGo.SetActive(true);
+                   enemyShipController.enemyShipTr.DOMove(new Vector3(0, 0, 7.5f),1);
                 }
             }
               astroidScale += new Vector3(-0.05f, -0.05f, -0.05f);

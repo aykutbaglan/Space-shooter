@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class EnemyShipController : MonoBehaviour
 {
     public GameObject enemyShipGo;
+    public Transform enemyShipTr;
     public GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private float fireRate = 2f;
@@ -12,31 +14,43 @@ public class EnemyShipController : MonoBehaviour
     [SerializeField] private EndGameState endGameState;
     [SerializeField] private StateMachine stateMachine;
     [SerializeField] private DestroyByContact destroyByContact;
+    [SerializeField] private PlayerController playerController;
     private bool canfire = true;
     private float nexrFireTime;
     private AudioSource audioPlayer;
     public int enemyHealt = 100;
+    public bool enemyShipZpos;
+
     private void Start()
     {
         audioPlayer = GetComponent<AudioSource>();
     }
     void Update()
     {
-        Debug.Log($"canfire status in Update: {canfire}");
-        if (canfire)
+        if (enemyShipGo != null)
         {
-            ResumeFire();
-            FireAtPlayer();
-        }
-        else
-        {
-            FirePause();
-        }
+            if (enemyShipTr.position.z <= 7.5f)
+            {
+                TargetEnemyShitPos();
+            }
 
+            Debug.Log($"canfire status in Update: {canfire}");
+            if (enemyShipZpos == true)
+            {
+                if (canfire)
+                {
+                    ResumeFire();
+                    FireAtPlayer();
+                }
+                else
+                {
+                    FirePause();
+                }
+            }
+        }
     }
     public void FireAtPlayer()
     {
-       
         if (Time.time >= nexrFireTime)
         {
             nexrFireTime = Time.time + fireRate;
@@ -67,6 +81,7 @@ public class EnemyShipController : MonoBehaviour
             Debug.LogError("Explosion is not assigned in playerController!");
         }
         enemyShipGo.SetActive(false);
+        
     }
     public void TakeHealt(int damage, GameObject source)
     {
@@ -79,6 +94,21 @@ public class EnemyShipController : MonoBehaviour
         {
             EnemyDie();
         }
+    }
+    public void ResetEnemyShipPosition()
+    {
+        if (enemyShipTr != null)
+        {
+            enemyShipTr.position = new Vector3(0, 0, 10);
+        }
+    }
+    public void FirstEnemyShipPos()
+    {
+        enemyShipZpos = false;
+    }
+    public void TargetEnemyShitPos()
+    {
+        enemyShipZpos = true;
     }
     public void FirePause()
     {

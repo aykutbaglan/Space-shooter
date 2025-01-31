@@ -57,5 +57,6 @@ public class EndGameState : State
         playerController.playerHealt = 100;
         enemyShipController.ResumeFire();
         enemyShipController.enemyHealt = 100;
+        enemyShipController.ResetEnemyShipPosition();
     }
 }
