@@ -31,10 +31,16 @@ public class DestroyByContact : MonoBehaviour
             playerShip.SetActive(false);
             //(endGameState as EndGameState).GameOver();
             stateMachine.ChangeState(endGameState);
+            return;
         }
-        if (other.tag == "Asteroids")
+        if (other.CompareTag("Enemy"))
         {
-            scoreManager.score = 0;
+            Destroy(gameObject);
+            return;
+        }
+        if (other.CompareTag("Asteroids"))
+        {
+            return;
         }
         else
         {

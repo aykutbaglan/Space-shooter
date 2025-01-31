@@ -8,6 +8,13 @@ public class EnemyShipController : MonoBehaviour
     public GameObject enemyShipGo;
     public Transform enemyShipTr;
     public GameObject bulletPrefab;
+    public int enemyHealt = 100;
+    public bool enemyShipZpos;
+    public float xFollowSpeed = 5f;
+    public float moveDistance = -2f;
+    public float moveDuration = 5f;
+
+
     [SerializeField] private Transform firePoint;
     [SerializeField] private float fireRate = 2f;
     [SerializeField] private float bulletSpeed = 10f;
@@ -15,12 +22,11 @@ public class EnemyShipController : MonoBehaviour
     [SerializeField] private StateMachine stateMachine;
     [SerializeField] private DestroyByContact destroyByContact;
     [SerializeField] private PlayerController playerController;
+
     private bool canfire = true;
     private float nexrFireTime;
     private AudioSource audioPlayer;
-    public int enemyHealt = 100;
-    public bool enemyShipZpos;
-
+    
     private void Start()
     {
         audioPlayer = GetComponent<AudioSource>();
@@ -48,6 +54,7 @@ public class EnemyShipController : MonoBehaviour
                 }
             }
         }
+        TargetPlayerShip();
     }
     public void FireAtPlayer()
     {
@@ -81,8 +88,8 @@ public class EnemyShipController : MonoBehaviour
             Debug.LogError("Explosion is not assigned in playerController!");
         }
         enemyShipGo.SetActive(false);
-        
     }
+
     public void TakeHealt(int damage, GameObject source)
     {
         if (source.CompareTag("Asteroids"))
@@ -93,6 +100,25 @@ public class EnemyShipController : MonoBehaviour
         if (enemyHealt <= 0)
         {
             EnemyDie();
+        }
+    }
+    public void TargetPlayerShip()
+    {
+        if (playerController.playerShipTr != null)
+        {
+            Vector3 targetPosition = new Vector3(playerController.playerShipTr.position.x, transform.position.y, transform.position.z);
+
+            transform.position = Vector3.Lerp(transform.position, targetPosition, xFollowSpeed * Time.deltaTime);
+        }
+    }
+    public void MoveZigzag()
+    {
+        if (enemyShipTr != null)
+        {
+            enemyShipTr.DOKill();
+            float startZ = transform.position.z;
+
+            transform.DOMoveZ(startZ + moveDistance, moveDuration).SetEase(Ease.InOutSine).SetLoops(-1,LoopType.Yoyo);
         }
     }
     public void ResetEnemyShipPosition()

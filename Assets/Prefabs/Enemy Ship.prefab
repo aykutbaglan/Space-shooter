@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 135117207130104304}
   - component: {fileID: 82889027971564698}
   - component: {fileID: 4869098278393626014}
+  - component: {fileID: 3554794071594726879}
   m_Layer: 0
   m_Name: Enemy Ship
   m_TagString: Enemy
@@ -279,15 +280,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyShipGo: {fileID: 1093887268274868}
+  enemyShipTr: {fileID: 4280819151522346}
   bulletPrefab: {fileID: 6141410218444267540, guid: e77f8b17a49ad1d4c8e2686f5298b417,
     type: 3}
+  enemyHealt: 200
+  enemyShipZpos: 0
+  xFollowSpeed: 5
+  moveDistance: -3
+  moveDuration: 2
   firePoint: {fileID: 4514590413945052}
   fireRate: 1
   bulletSpeed: 20
   endGameState: {fileID: 0}
   stateMachine: {fileID: 0}
   destroyByContact: {fileID: 0}
-  enemyHealt: 100
+  playerController: {fileID: 0}
+--- !u!114 &3554794071594726879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093887268274868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a036f93b0590b840a0be31602fa6db6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
 --- !u!1 &1351048805008026
 GameObject:
   m_ObjectHideFlags: 0

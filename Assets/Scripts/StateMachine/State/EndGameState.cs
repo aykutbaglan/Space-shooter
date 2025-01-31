@@ -29,7 +29,7 @@ public class EndGameState : State
     {
         base.OnEnter();
         GameOver();
-        enemyShipController.FirePause();
+        //enemyShipController.FirePause();
         //Game over sesini oynat.
     }
     public override void OnExit() 
@@ -39,6 +39,8 @@ public class EndGameState : State
     public void GameOver()
     {
         gameManager.gameOver = true;
+        enemyShipController.FirePause();
+        playerController.playerShipGo.SetActive(false);
         quitTxt.text = "Press 'Q' for Quit";
         restartTxt.text = "Press 'R' for Restart";
         gameOverTxt.text = "Game Over";
@@ -58,5 +60,7 @@ public class EndGameState : State
         enemyShipController.ResumeFire();
         enemyShipController.enemyHealt = 100;
         enemyShipController.ResetEnemyShipPosition();
+       
+
     }
 }

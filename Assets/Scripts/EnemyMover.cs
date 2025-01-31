@@ -29,12 +29,14 @@ public class EnemyMover : MonoBehaviour
                 player.TakeHealt(20);
             if (player.playerHealt <= 0 && endGameState != null)
             {
+                //player.playerShipGo.SetActive(false);
                 endGameState.OnEnter();
+                //endGameState.GameOver();
             }
-                else if (endGameState == null)
-                {
-                    Debug.LogError("EndGameState is not assigned!");
-                }
+            else if (endGameState == null)
+            {
+                Debug.LogError("EndGameState is not assigned!");
+            }
             }
             Destroy(gameObject);
         }

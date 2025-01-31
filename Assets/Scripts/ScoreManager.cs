@@ -10,6 +10,7 @@ public class ScoreManager : MonoBehaviour
     public TMP_Text highScoreText;
     public int score = 0;
     public int highScore;
+    private bool canAddScore;
 
     private void Start()
     {
@@ -36,5 +37,13 @@ public class ScoreManager : MonoBehaviour
     {
         score = 0;
         scoreTxt.text = "Score: " + score;
+    }
+    public void DisableScoreAddition()
+    {
+        canAddScore = false;
+    }
+    public void EnableScoreAddition()
+    {
+        canAddScore = true;
     }
 }

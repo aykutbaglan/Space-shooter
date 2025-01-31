@@ -949,11 +949,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4869098278393626014, guid: 61acbff360156435c88550bac7aa1208,
         type: 3}
-      propertyPath: enemyShipTr
-      value: 
-      objectReference: {fileID: 1290437065}
-    - target: {fileID: 4869098278393626014, guid: 61acbff360156435c88550bac7aa1208,
-        type: 3}
       propertyPath: endGameState
       value: 
       objectReference: {fileID: 771095443}
@@ -975,11 +970,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1093887268274868, guid: 61acbff360156435c88550bac7aa1208,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1290437061}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61acbff360156435c88550bac7aa1208, type: 3}
 --- !u!1 &499426494
 GameObject:
@@ -1413,12 +1404,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1749565692}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &907302547 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1093887268274868, guid: 61acbff360156435c88550bac7aa1208,
-    type: 3}
-  m_PrefabInstance: {fileID: 451402953}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &911432543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,31 +2123,12 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 451402953}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907302547}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5c4cef13c15cbc41ad097d10097735b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1290437061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907302547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a036f93b0590b840a0be31602fa6db6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
---- !u!4 &1290437065 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4280819151522346, guid: 61acbff360156435c88550bac7aa1208,
-    type: 3}
-  m_PrefabInstance: {fileID: 451402953}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1352214607
 GameObject:
   m_ObjectHideFlags: 0

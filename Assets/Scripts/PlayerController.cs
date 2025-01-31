@@ -86,5 +86,4 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("destroy player");
         }
     }
-
 }

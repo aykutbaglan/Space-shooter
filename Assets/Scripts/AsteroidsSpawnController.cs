@@ -26,7 +26,7 @@ public class AsteroidsSpawnController : MonoBehaviour
         if (enemyShipController.enemyShipGo != null)
         {
              enemyShipController.enemyShipGo.SetActive(false);
-            enemyShipController.enemyShipTr.DOKill();
+            //enemyShipController.enemyShipTr.DOKill();
         }
     }
     private void Update()
@@ -65,7 +65,10 @@ public class AsteroidsSpawnController : MonoBehaviour
                 if (enemyShipController.enemyShipGo != null)
                 {
                    enemyShipController.enemyShipGo.SetActive(true);
-                   enemyShipController.enemyShipTr.DOMove(new Vector3(0, 0, 7.5f),1);
+                    enemyShipController.enemyShipTr.DOMove(new Vector3(0, 0, 7.5f), 1).OnComplete(() =>
+                    {
+                       enemyShipController.MoveZigzag();
+                    });
                 }
             }
               astroidScale += new Vector3(-0.05f, -0.05f, -0.05f);
