@@ -128,6 +128,13 @@ public class EnemyShipController : MonoBehaviour
             enemyShipTr.position = new Vector3(0, 0, 10);
         }
     }
+    public void ResetEnemyShip()
+    {
+        enemyShipTr.DOKill();
+
+        enemyShipTr.position = new Vector3(0, 0, 10);
+        enemyShipGo.SetActive(false);
+    }
     public void FirstEnemyShipPos()
     {
         enemyShipZpos = false;

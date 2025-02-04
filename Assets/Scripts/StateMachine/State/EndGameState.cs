@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -59,8 +60,6 @@ public class EndGameState : State
         playerController.playerHealt = 100;
         enemyShipController.ResumeFire();
         enemyShipController.enemyHealt = 100;
-        enemyShipController.ResetEnemyShipPosition();
-       
-
+        enemyShipController.ResetEnemyShip();       
     }
 }
