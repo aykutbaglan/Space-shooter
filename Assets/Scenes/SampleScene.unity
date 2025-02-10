@@ -1081,6 +1081,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 135117207130104304, guid: 61acbff360156435c88550bac7aa1208,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4869098278393626014, guid: 61acbff360156435c88550bac7aa1208,
         type: 3}
       propertyPath: endGameState

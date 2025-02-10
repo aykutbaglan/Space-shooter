@@ -20,6 +20,7 @@ public class playerMover : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeHealt(20, gameObject);
+                Destroy(gameObject);
             }
         }
     }

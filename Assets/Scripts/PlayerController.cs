@@ -73,17 +73,13 @@ public class PlayerController : MonoBehaviour
     }
     public void TakeHealt(int damage)
     {
-        //Debug.Log($"TakeHealt called with damage: {damage}");
         playerHealt -= damage;
-        //Debug.Log($"Player health after damage: {healt}"); // Can miktarını kontrol edin
 
         if (playerHealt <= 0)
         {
-            //playerShipGo.SetActive(false);
             PlayerDie();
             stateMachine.TransitionToNextState();
             audioPlayer.Play();
-            //Debug.Log("destroy player");
         }
     }
 }
