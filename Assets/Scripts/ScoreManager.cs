@@ -8,8 +8,11 @@ public class ScoreManager : MonoBehaviour
     
     public TMP_Text scoreTxt;
     public TMP_Text highScoreText;
+    public TMP_Text missNumberText;
     public int score = 0;
     public int highScore;
+    public int missNumber = 0;
+    [SerializeField] private EndGameState endGameState;
     private bool canAddScore;
 
     private void Start()
@@ -32,6 +35,18 @@ public class ScoreManager : MonoBehaviour
     public void UpdateHighScoreText()
     {
         highScoreText.text = "High Score: " + highScore;   
+    }
+    public void MissNumber()
+    {
+        missNumber++;
+        if (missNumber <= 10)
+        {
+            //endGameState.OnEnter();
+        }
+        else
+        {
+            //endGameState.OnExit();
+        }
     }
     public void ResetScore()
     {
