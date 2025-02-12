@@ -24,7 +24,6 @@ public class DestroyByContact : MonoBehaviour
         {
             return;
         }
-        Instantiate(explosion, transform.position, transform.rotation);
         if (other.tag == "Player")
         {
             Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
@@ -38,13 +37,17 @@ public class DestroyByContact : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        if (other.CompareTag("Asteroids"))
+        if (other.CompareTag("Asteroids") && gameObject.CompareTag("Asteroids"))
         {
             return;
         }
         else
         {
             scoreManager.UpdateScoreText();
+        }
+        if (explosion != null)
+        {
+            Instantiate(explosion, transform.position, transform.rotation);
         }
         Destroy(gameObject);   
     }

@@ -3016,7 +3016,7 @@ GameObject:
   - component: {fileID: 1758759275}
   m_Layer: 0
   m_Name: AsteroidsSpawnDestroyController
-  m_TagString: Untagged
+  m_TagString: DestroyByContact
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3084,7 +3084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a77800d9bbca84c98282b27e625137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 2483214896074895332, guid: 2857e183f4cd3df4e9096e5b578bd32f,
+  explosion: {fileID: 3952931278531081054, guid: 384371afbb4354cc9a3fc68eab303756,
     type: 3}
   playerExplosion: {fileID: 2813335916456837531, guid: a93496017806b7740910df5fd946f306,
     type: 3}

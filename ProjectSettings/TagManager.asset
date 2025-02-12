@@ -10,6 +10,9 @@ TagManager:
   - StateMachine
   - Asteroids
   - EnemyBullet
+  - ExplessionParticle
+  - ExplosionsParticle
+  - DestroyByContact
   layers:
   - Default
   - TransparentFX
