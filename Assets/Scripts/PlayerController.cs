@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float fireRate;
     [SerializeField] private StateMachine stateMachine;
     [SerializeField] private DestroyByContact destroyByContact;
+    [SerializeField] private EnemyShipController enemyShipController;
     private Rigidbody physic;
     private AudioSource audioPlayer;
 
@@ -69,7 +70,13 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogError("Explosion is not assigned in playerController!");
         }
+        Debug.Log("Player is dead. Calling SetGameOver on enemy ship.");
         playerShipGo.SetActive(false);
+        if (enemyShipController != null)
+        {
+            enemyShipController.SetGameOver();
+        }
+        stateMachine.TransitionToNextState();
     }
     public void TakeHealt(int damage)
     {

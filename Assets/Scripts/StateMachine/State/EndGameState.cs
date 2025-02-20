@@ -42,6 +42,7 @@ public class EndGameState : State
         gameManager.gameOver = true;
         enemyShipController.FirePause();
         playerController.playerShipGo.SetActive(false);
+        enemyShipController.SetGameOver();
         quitTxt.text = "Press 'Q' for Quit";
         restartTxt.text = "Press 'R' for Restart";
         gameOverTxt.text = "Game Over";
@@ -60,6 +61,6 @@ public class EndGameState : State
         playerController.playerHealt = 100;
         enemyShipController.ResumeFire();
         enemyShipController.enemyHealt = 100;
-        enemyShipController.ResetEnemyShip();       
+        enemyShipController.ResetEnemyShip();
     }
 }

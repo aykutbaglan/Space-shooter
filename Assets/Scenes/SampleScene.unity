@@ -471,6 +471,7 @@ MonoBehaviour:
   fireRate: 0.25
   stateMachine: {fileID: 1749565691}
   destroyByContact: {fileID: 1758759275}
+  enemyShipController: {fileID: 1290437056}
 --- !u!82 &98885009
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1091,6 +1092,11 @@ PrefabInstance:
       propertyPath: endGameState
       value: 
       objectReference: {fileID: 771095443}
+    - target: {fileID: 4869098278393626014, guid: 61acbff360156435c88550bac7aa1208,
+        type: 3}
+      propertyPath: scoreManager
+      value: 
+      objectReference: {fileID: 1379127698}
     - target: {fileID: 4869098278393626014, guid: 61acbff360156435c88550bac7aa1208,
         type: 3}
       propertyPath: stateMachine
@@ -3045,6 +3051,7 @@ MonoBehaviour:
   asteroidMover: {fileID: 3162376756086284763, guid: ca1353930d6853146be53af51592a657,
     type: 3}
   enemyShipController: {fileID: 1290437056}
+  playerController: {fileID: 98885008}
 --- !u!4 &1758759273
 Transform:
   m_ObjectHideFlags: 0
@@ -3091,6 +3098,7 @@ MonoBehaviour:
   endGameState: {fileID: 771095443}
   stateMachine: {fileID: 1749565691}
   playerShip: {fileID: 98885004}
+  enemyShipController: {fileID: 1290437056}
 --- !u!1 &1801053886
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class EnemyShipController : MonoBehaviour
     public float xFollowSpeed = 5f;
     public float moveDistance = -2f;
     public float moveDuration = 5f;
-
+    public bool isGameOver = false;
 
     [SerializeField] private Transform firePoint;
     [SerializeField] private float fireRate = 2f;
@@ -22,10 +22,11 @@ public class EnemyShipController : MonoBehaviour
     [SerializeField] private StateMachine stateMachine;
     [SerializeField] private DestroyByContact destroyByContact;
     [SerializeField] private PlayerController playerController;
+    [SerializeField] private ScoreManager scoreManager;
 
+    private AudioSource audioPlayer;
     private bool canfire = true;
     private float nexrFireTime;
-    private AudioSource audioPlayer;
     
     private void Start()
     {
@@ -88,6 +89,7 @@ public class EnemyShipController : MonoBehaviour
             Debug.LogError("Explosion is not assigned in playerController!");
         }
         enemyShipGo.SetActive(false);
+        scoreManager.EnemyDeadScore();
     }
 
     public void TakeHealt(int damage, GameObject source)
@@ -104,21 +106,31 @@ public class EnemyShipController : MonoBehaviour
     }
     public void TargetPlayerShip()
     {
-        if (playerController.playerShipTr != null)
-        {
-            Vector3 targetPosition = new Vector3(playerController.playerShipTr.position.x, transform.position.y, transform.position.z);
+        if (isGameOver) return;
+        Debug.Log("Game over. Stopping enemy ship movement.");
 
-            transform.position = Vector3.Lerp(transform.position, targetPosition, xFollowSpeed * Time.deltaTime);
-        }
+        if (playerController.playerShipTr != null)
+            {
+                Vector3 targetPosition = new Vector3(playerController.playerShipTr.position.x, transform.position.y, transform.position.z);
+
+                transform.position = Vector3.Lerp(transform.position, targetPosition, xFollowSpeed * Time.deltaTime);
+            }
     }
     public void MoveZigzag()
     {
+        Debug.Log("isGameOver in MoveZigzag: " + isGameOver);
+        if (isGameOver)
+        {
+            Debug.Log("Game Over, stopping zigzag movement.");
+            enemyShipTr.DOKill();
+            return;
+        }
         if (enemyShipTr != null)
         {
-            enemyShipTr.DOKill();
+            Debug.Log("Starting zigzag movement.");
             float startZ = transform.position.z;
-
-            transform.DOMoveZ(startZ + moveDistance, moveDuration).SetEase(Ease.InOutSine).SetLoops(-1,LoopType.Yoyo);
+            enemyShipTr.DOKill();
+            transform.DOMoveZ(startZ + moveDistance, moveDuration).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
         }
     }
     public void ResetEnemyShipPosition()
@@ -128,12 +140,29 @@ public class EnemyShipController : MonoBehaviour
             enemyShipTr.position = new Vector3(0, 0, 10);
         }
     }
+    public void SetGameOver()
+    {
+        isGameOver = true;
+        Debug.Log("Game Over. Enemy movement and firing should stop.");
+        enemyShipTr.DOKill();
+    }
     public void ResetEnemyShip()
     {
-        enemyShipTr.DOKill();
+        enemyShipTr.DOKill(true);
 
-        enemyShipTr.position = new Vector3(0, 0, 10);
         enemyShipGo.SetActive(false);
+        ResetEnemyShipPosition();
+        isGameOver = false;
+
+        if (enemyShipGo.activeSelf == true)
+        {
+        enemyShipTr.DOMoveZ(7.5f, 1).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            TargetPlayerShip();
+            MoveZigzag();
+        });
+
+        }
     }
     public void FirstEnemyShipPos()
     {

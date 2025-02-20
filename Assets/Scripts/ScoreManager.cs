@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    
     public TMP_Text scoreTxt;
     public TMP_Text highScoreText;
     public TMP_Text missNumberText;
@@ -13,7 +12,6 @@ public class ScoreManager : MonoBehaviour
     public int highScore;
     public int missNumber = 0;
     [SerializeField] private EndGameState endGameState;
-    private bool canAddScore;
 
     private void Start()
     {
@@ -48,17 +46,14 @@ public class ScoreManager : MonoBehaviour
             //endGameState.OnExit();
         }
     }
+    public void EnemyDeadScore()
+    {
+        score += 50;
+        scoreTxt.text = "Score: " + score;
+    }
     public void ResetScore()
     {
         score = 0;
         scoreTxt.text = "Score: " + score;
-    }
-    public void DisableScoreAddition()
-    {
-        canAddScore = false;
-    }
-    public void EnableScoreAddition()
-    {
-        canAddScore = true;
     }
 }

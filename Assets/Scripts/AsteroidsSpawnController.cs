@@ -18,6 +18,7 @@ public class AsteroidsSpawnController : MonoBehaviour
     [SerializeField] private EndGameState endGameState;
     [SerializeField] private AsteroidMover asteroidMover;
     [SerializeField] private EnemyShipController enemyShipController;
+    [SerializeField] private PlayerController playerController;
     
     private void Start()
     {
@@ -26,7 +27,6 @@ public class AsteroidsSpawnController : MonoBehaviour
         if (enemyShipController.enemyShipGo != null)
         {
              enemyShipController.enemyShipGo.SetActive(false);
-            //enemyShipController.enemyShipTr.DOKill();
         }
     }
     private void Update()
@@ -67,7 +67,14 @@ public class AsteroidsSpawnController : MonoBehaviour
                    enemyShipController.enemyShipGo.SetActive(true);
                     enemyShipController.enemyShipTr.DOMove(new Vector3(0, 0, 7.5f), 1).OnComplete(() =>
                     {
-                       enemyShipController.MoveZigzag();
+                        if (!enemyShipController.isGameOver)
+                        {
+                          enemyShipController.MoveZigzag();
+                        }
+                        else
+                        {
+                            Debug.Log("Game Over, Zigzag not started.");
+                        }
                     });
                 }
             }

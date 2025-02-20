@@ -5,6 +5,7 @@ using UnityEngine;
 public class playerMover : MonoBehaviour
 {
     public float speed;
+    private ScoreManager scoreManager;
     private DestroyByContact destroyByContact;
     private Rigidbody _physic;
 
@@ -12,6 +13,12 @@ public class playerMover : MonoBehaviour
     {
         _physic = GetComponent<Rigidbody>();
         _physic.velocity = transform.forward * speed;
+
+        GameObject scoreManagerGo = GameObject.FindWithTag("ScoreManager");
+        if (scoreManagerGo != null)
+        {
+            scoreManager = scoreManagerGo.GetComponent<ScoreManager>();
+        }
         //GameObject destroyByContactObj = GameObject.FindWithTag("DestroyByContact");
         //if (destroyByContactObj != null)
         //{
@@ -31,6 +38,10 @@ public class playerMover : MonoBehaviour
             {
                 enemy.TakeHealt(20, gameObject);
                 Destroy(gameObject);
+                //if (scoreManager != null)
+                //{
+                //   scoreManager.score += 50;
+                //}
             }
         }
         //if (other.CompareTag("Asteroids") && destroyByContact != null)

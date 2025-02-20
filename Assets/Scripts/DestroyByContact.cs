@@ -11,6 +11,7 @@ public class DestroyByContact : MonoBehaviour
     [SerializeField] private State endGameState;
     [SerializeField] private StateMachine stateMachine;
     [SerializeField] private GameObject playerShip;
+    [SerializeField] private EnemyShipController enemyShipController;
     private void Start()
     {
         scoreManager = GameObject.FindWithTag("ScoreManager").GetComponent<ScoreManager>();
@@ -28,13 +29,12 @@ public class DestroyByContact : MonoBehaviour
         {
             Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
             playerShip.SetActive(false);
-            //(endGameState as EndGameState).GameOver();
             stateMachine.ChangeState(endGameState);
+            enemyShipController.MoveZigzag();
             return;
         }
         if (other.CompareTag("Enemy"))
         {
-            Destroy(gameObject);
             return;
         }
         if (other.CompareTag("Asteroids") && gameObject.CompareTag("Asteroids"))
