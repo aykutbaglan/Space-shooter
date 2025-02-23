@@ -3041,7 +3041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroids: {fileID: 3162376756086284753, guid: ca1353930d6853146be53af51592a657,
     type: 3}
-  _spawnCount: 10
+  _spawnCount: 40
   _startSpawn: 1
   _spawnWait: 0.5
   _waveWait: 4

@@ -48,7 +48,7 @@ public class ScoreManager : MonoBehaviour
     }
     public void EnemyDeadScore()
     {
-        score += 50;
+        score += 200;
         scoreTxt.text = "Score: " + score;
     }
     public void ResetScore()

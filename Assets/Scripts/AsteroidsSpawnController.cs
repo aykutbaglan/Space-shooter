@@ -60,7 +60,7 @@ public class AsteroidsSpawnController : MonoBehaviour
 
             _spawnCount += 5;
              asteroidMover.speed -= 1;
-            if (_spawnCount == 15)
+            if (_spawnCount == 40)
             {
                 if (enemyShipController.enemyShipGo != null)
                 {
