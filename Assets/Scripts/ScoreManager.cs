@@ -12,6 +12,7 @@ public class ScoreManager : MonoBehaviour
     public int highScore;
     public int missNumber = 0;
     [SerializeField] private EndGameState endGameState;
+    [SerializeField] private PlayerController playerController;
 
     private void Start()
     {
@@ -36,14 +37,14 @@ public class ScoreManager : MonoBehaviour
     }
     public void MissNumber()
     {
-        missNumber++;
-        if (missNumber <= 10)
+        if (missNumber < 20 && playerController.playerShipGo.activeSelf)
         {
-            //endGameState.OnEnter();
+            missNumber++;
+            missNumberText.text = "Miss Number: " + missNumber;
         }
-        else
+        if (missNumber >= 20)
         {
-            //endGameState.OnExit();
+            endGameState.OnEnter();
         }
     }
     public void EnemyDeadScore()
@@ -51,9 +52,11 @@ public class ScoreManager : MonoBehaviour
         score += 200;
         scoreTxt.text = "Score: " + score;
     }
-    public void ResetScore()
+    public void ResetScoreAndMissNumberScore()
     {
         score = 0;
         scoreTxt.text = "Score: " + score;
+        missNumber = 0;
+        missNumberText.text = "Miss Number: " + missNumber;
     }
 }

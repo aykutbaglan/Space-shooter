@@ -7,7 +7,10 @@ public class DestroyByBoundary : MonoBehaviour
     [SerializeField] private ScoreManager scoreManager;
     void OnTriggerExit(Collider other)
     {
-        scoreManager.MissNumber();
+        if (other.gameObject.CompareTag("Asteroids"))
+        {
+            scoreManager.MissNumber();
+        }
         Destroy(other.gameObject);
     }
 }

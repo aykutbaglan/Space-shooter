@@ -30,7 +30,10 @@ public class DestroyByContact : MonoBehaviour
             Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
             playerShip.SetActive(false);
             stateMachine.ChangeState(endGameState);
-            enemyShipController.MoveZigzag();
+            if (enemyShipController != null)
+            {
+                enemyShipController.MoveZigzag();
+            }
             return;
         }
         if (other.CompareTag("Enemy"))

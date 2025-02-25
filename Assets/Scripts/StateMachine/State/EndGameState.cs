@@ -51,10 +51,11 @@ public class EndGameState : State
     {
         PlayerPrefs.SetInt("ÝsGameStarted", 1);
         PlayerPrefs.Save();
-        scoreManager.ResetScore();
+        scoreManager.ResetScoreAndMissNumberScore();
         destroyAsteroidsInScene.DestroyAsteroids();
         asteroidsSpawnController.ResetAsteroidMoverSpeed();
         gameManager.restart = true;
+        OnExit();
         stateMachine.transitionToSpecificState(1);
         playerController.playerShipTr.position = new Vector3(0f, playerController.playerShipTr.position.y, 0);
         enemyShipController.gameObject.SetActive(false);
