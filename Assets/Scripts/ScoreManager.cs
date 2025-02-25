@@ -40,7 +40,8 @@ public class ScoreManager : MonoBehaviour
         if (missNumber < 20 && playerController.playerShipGo.activeSelf)
         {
             missNumber++;
-            missNumberText.text = "Miss Number: " + missNumber;
+            //missNumberText.text = "Miss Number: " + missNumber;
+            UpdateMissNumberText();
         }
         if (missNumber >= 20)
         {
@@ -57,6 +58,11 @@ public class ScoreManager : MonoBehaviour
         score = 0;
         scoreTxt.text = "Score: " + score;
         missNumber = 0;
-        missNumberText.text = "Miss Number: " + missNumber;
+        //missNumberText.text = "Miss Number: " + missNumber;
+        UpdateMissNumberText();
+    }
+    private void UpdateMissNumberText()
+    {
+        missNumberText.text = $"Miss Number: {missNumber}/20";
     }
 }
