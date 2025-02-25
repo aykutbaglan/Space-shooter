@@ -19,16 +19,20 @@ public class AsteroidsSpawnController : MonoBehaviour
     [SerializeField] private AsteroidMover asteroidMover;
     [SerializeField] private EnemyShipController enemyShipController;
     [SerializeField] private PlayerController playerController;
-    
+
+    private Camera _mainCamera;
+
     private void Start()
     {
+        _mainCamera = Camera.main;
         ResetAsteroids();
         ResetAsteroidMoverSpeed();
         if (enemyShipController.enemyShipGo != null)
         {
-             enemyShipController.enemyShipGo.SetActive(false);
+            enemyShipController.enemyShipGo.SetActive(false);
         }
     }
+
     private void Update()
     {
         if (gameManager.gameOver && _spawnCoroutine != null)
@@ -36,16 +40,23 @@ public class AsteroidsSpawnController : MonoBehaviour
             StopSpawning();
         }
     }
+
     public IEnumerator SpawnAsteroids()
     {
         yield return new WaitForSeconds(_startSpawn);
         int waveCount = _spawnCount;
         Vector3 astroidScale = asteroids.transform.localScale;
+
+        // Ekran geniþliðini dinamik olarak alýyoruz
+        float screenWidth = _mainCamera.orthographicSize * Screen.width / Screen.height;
+
         while (true)
         {
             for (int i = 0; i < _spawnCount; i++)
             {
-                Vector3 spawnPosition = new Vector3(Random.Range(-2.6f, 2.6f), 0, 10);
+                // Asteroidlerin spawn pozisyonunu ekranýn sað ve sol kenarlarýndan baðýmsýz olarak hesaplýyoruz
+                float spawnX = Random.Range(-screenWidth, screenWidth);
+                Vector3 spawnPosition = new Vector3(spawnX, 0, 10);
                 Quaternion spawnRotation = Quaternion.identity;
 
                 GameObject asteroidInstance = Instantiate(asteroids, spawnPosition, spawnRotation);
@@ -59,17 +70,18 @@ public class AsteroidsSpawnController : MonoBehaviour
             yield return new WaitForSeconds(_waveWait);
 
             _spawnCount += 5;
-             asteroidMover.speed -= 1;
+            asteroidMover.speed -= 1;
+
             if (_spawnCount == 40)
             {
                 if (enemyShipController.enemyShipGo != null)
                 {
-                   enemyShipController.enemyShipGo.SetActive(true);
+                    enemyShipController.enemyShipGo.SetActive(true);
                     enemyShipController.enemyShipTr.DOMove(new Vector3(0, 0, 7.5f), 1).OnComplete(() =>
                     {
                         if (!enemyShipController.isGameOver)
                         {
-                          enemyShipController.MoveZigzag();
+                            enemyShipController.MoveZigzag();
                         }
                         else
                         {
@@ -78,22 +90,23 @@ public class AsteroidsSpawnController : MonoBehaviour
                     });
                 }
             }
-              astroidScale += new Vector3(-0.05f, -0.05f, -0.05f);
+
+            astroidScale += new Vector3(-0.05f, -0.05f, -0.05f);
             if (gameManager.gameOver == true)
             {
                 break;
             }
         }
     }
+
     public void StartSpawning()
     {
+        if (_spawnCoroutine == null)
         {
-            if (_spawnCoroutine == null)
-            {
-                _spawnCoroutine = StartCoroutine(SpawnAsteroids());
-            }
+            _spawnCoroutine = StartCoroutine(SpawnAsteroids());
         }
     }
+
     public void StopSpawning()
     {
         if (_spawnCoroutine != null)
@@ -102,6 +115,7 @@ public class AsteroidsSpawnController : MonoBehaviour
             _spawnCoroutine = null;
         }
     }
+
     public void ResetAsteroids()
     {
         endGameState.gameOverTxt.text = "";
@@ -110,6 +124,7 @@ public class AsteroidsSpawnController : MonoBehaviour
         gameManager.gameOver = false;
         gameManager.restart = false;
     }
+
     public void ResetAsteroidMoverSpeed()
     {
         _spawnCount = 10;
