@@ -21,19 +21,41 @@ public class DestroyByContact : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Çarpışan obje: " + other.gameObject.name);
         if(other.gameObject.tag == "Boundary")
         {
             return;
         }
         if (other.tag == "Player")
         {
-            Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
-            playerShip.SetActive(false);
-            stateMachine.ChangeState(endGameState);
-            if (enemyShipController != null)
+            PlayerHealt playerHealth = other.GetComponent<PlayerHealt>();
+
+            if (playerHealth == null) 
             {
-                enemyShipController.MoveZigzag();
+                Debug.LogError("PlayerHealt bileşeni bulunamadı! Player objesinde var mı?");
+                return;
             }
+            playerHealth.TakeDamage(20);
+            
+            if (playerHealth.currentHealt <= 0)
+            {
+                if (explosion != null)
+                {
+                    Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
+                }
+                other.gameObject.SetActive(false);
+                stateMachine.ChangeState(endGameState);
+                if (enemyShipController != null)
+                {
+                    enemyShipController.MoveZigzag();
+                }
+            }
+            if (explosion != null)
+            {
+                Instantiate(explosion, transform.position, transform.rotation);
+            }
+
+            Destroy(gameObject);
             return;
         }
         if (other.CompareTag("Enemy"))

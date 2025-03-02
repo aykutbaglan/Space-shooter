@@ -93,8 +93,11 @@ public class PlayerController : MonoBehaviour
 
     public void TakeHealt(int damage)
     {
-        playerHealt -= damage;
+        if (CompareTag("Asteroids"))
+        {
 
+        }
+        playerHealt -= damage;
         if (playerHealt <= 0)
         {
             PlayerDie();
