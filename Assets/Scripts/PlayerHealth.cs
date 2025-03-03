@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealt : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     public int playerHealt = 100;
     public int currentHealt;
 
     public Slider healtBar;
+    public Gradient gradient;
+    public Image fill;
     private PlayerController playerController;
 
     private void Awake()
@@ -23,6 +25,8 @@ public class PlayerHealt : MonoBehaviour
         {
             healtBar.maxValue = playerHealt;
             healtBar.value = currentHealt;
+
+            fill.color = gradient.Evaluate(1f);
         }
     }
 
@@ -34,6 +38,7 @@ public class PlayerHealt : MonoBehaviour
         if (healtBar != null)
         {
             healtBar.value = currentHealt;
+            fill.color = gradient.Evaluate(healtBar.normalizedValue);
         }
 
         Debug.Log("Player Health: " + currentHealt);
@@ -41,6 +46,15 @@ public class PlayerHealt : MonoBehaviour
         if (currentHealt <= 0)
         {
             playerController.PlayerDie();
+        }
+    }
+    public void ResetHealth()
+    {
+        currentHealt = playerHealt;
+        if (healtBar != null)
+        {
+            healtBar.value = currentHealt;
+            fill.color = gradient.Evaluate(1f);
         }
     }
 }

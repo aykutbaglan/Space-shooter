@@ -28,7 +28,7 @@ public class DestroyByContact : MonoBehaviour
         }
         if (other.tag == "Player")
         {
-            PlayerHealt playerHealth = other.GetComponent<PlayerHealt>();
+            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
 
             if (playerHealth == null) 
             {

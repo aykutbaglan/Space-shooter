@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private StateMachine stateMachine;
     [SerializeField] private DestroyByContact destroyByContact;
     [SerializeField] private EnemyShipController enemyShipController;
+    [SerializeField] private PlayerHealth playerhealth;
     private Rigidbody physic;
     private AudioSource audioPlayer;
 
@@ -93,10 +94,12 @@ public class PlayerController : MonoBehaviour
 
     public void TakeHealt(int damage)
     {
-        if (CompareTag("Asteroids"))
+        if (playerhealth != null)
         {
-
+            playerhealth.TakeDamage(20);
+            playerhealth.fill.color = playerhealth.gradient.Evaluate(playerhealth.healtBar.normalizedValue);
         }
+
         playerHealt -= damage;
         if (playerHealt <= 0)
         {
