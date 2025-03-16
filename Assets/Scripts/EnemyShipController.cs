@@ -181,6 +181,7 @@ public class EnemyShipController : MonoBehaviour
     public void ResetEnemyShip()
     {
         enemyShipTr.DOKill(true);
+        ClearAllExplosions();
 
         if (healthBartr != null)
         {
@@ -212,6 +213,14 @@ public class EnemyShipController : MonoBehaviour
         if (enemyHealthBar != null)
         {
             enemyHealthBar.ResetHealth();
+        }
+    }
+    private void ClearAllExplosions()
+    {
+        GameObject[] explosions = GameObject.FindGameObjectsWithTag("Explosion");
+        foreach (GameObject explosion in explosions)
+        {
+            Destroy(explosion);
         }
     }
     public void FirstEnemyShipPos()
