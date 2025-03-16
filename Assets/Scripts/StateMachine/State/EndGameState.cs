@@ -19,6 +19,7 @@ public class EndGameState : State
     [SerializeField] private EnemyShipController enemyShipController;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private EnemyHealth enemyHealth;
     private void OnEnable()
     {
         restartButton.onClick.AddListener(RestartButtonOnClick);
@@ -62,9 +63,9 @@ public class EndGameState : State
         enemyShipController.gameObject.SetActive(false);
         playerController.playerHealt = 100;
         enemyShipController.ResumeFire();
-        enemyShipController.enemyHealt = 100;
         enemyShipController.ResetEnemyShip();
         playerHealth.currentHealt = 100;
         playerHealth.ResetHealth();
+        enemyShipController.ResetEnemyShipHealth();
     }
 }

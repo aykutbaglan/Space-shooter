@@ -7,8 +7,10 @@ public class EnemyShipController : MonoBehaviour
 {
     public GameObject enemyShipGo;
     public Transform enemyShipTr;
+    public Transform healthBartr;
     public GameObject bulletPrefab;
-    public int enemyHealt = 100;
+    public int enemyHealt = 200;
+    public int currentHealth;
     public bool enemyShipZpos;
     public float xFollowSpeed = 5f;
     public float moveDistance = -2f;
@@ -23,6 +25,7 @@ public class EnemyShipController : MonoBehaviour
     [SerializeField] private DestroyByContact destroyByContact;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private EnemyHealth enemyHealthBar;
 
     private AudioSource audioPlayer;
     private bool canfire = true;
@@ -31,9 +34,24 @@ public class EnemyShipController : MonoBehaviour
     private void Start()
     {
         audioPlayer = GetComponent<AudioSource>();
+        currentHealth = enemyHealt;
+        enemyHealthBar.SetMaxHealth(enemyHealt);
+        if (healthBartr != null)
+        {
+            healthBartr.gameObject.SetActive(false);
+        }
     }
     void Update()
     {
+        if (enemyShipTr != null && healthBartr != null)
+        {
+            Vector3 worldPosition = enemyShipTr.position + new Vector3(0, 2, 0);
+            healthBartr.position = Camera.main.WorldToScreenPoint(worldPosition);
+        }
+        if (!healthBartr.gameObject.activeSelf)
+        {
+            healthBartr.gameObject.SetActive(true);
+        }
         if (enemyShipGo != null)
         {
             if (enemyShipTr.position.z <= 7.5f)
@@ -98,8 +116,22 @@ public class EnemyShipController : MonoBehaviour
         {
             return;
         }
+        TakeDamage(damage);
         enemyHealt -= damage;
         if (enemyHealt <= 0)
+        {
+            EnemyDie();
+        }
+        if (enemyHealthBar != null)
+        {
+            enemyHealthBar.TakeDamage(20);
+        }
+    }
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        enemyHealthBar.SetHealth(currentHealth);
+        if (currentHealth <= 0)
         {
             EnemyDie();
         }
@@ -150,6 +182,11 @@ public class EnemyShipController : MonoBehaviour
     {
         enemyShipTr.DOKill(true);
 
+        if (healthBartr != null)
+        {
+            healthBartr.gameObject.SetActive(false);
+        }
+
         enemyShipGo.SetActive(false);
         ResetEnemyShipPosition();
         isGameOver = false;
@@ -160,8 +197,21 @@ public class EnemyShipController : MonoBehaviour
         {
             TargetPlayerShip();
             MoveZigzag();
+            if (healthBartr != null)
+            {
+                healthBartr.gameObject.SetActive(true);
+            }
         });
 
+        }
+    }
+    public void ResetEnemyShipHealth()
+    {
+        enemyHealt = 200;
+        currentHealth = enemyHealt;
+        if (enemyHealthBar != null)
+        {
+            enemyHealthBar.ResetHealth();
         }
     }
     public void FirstEnemyShipPos()

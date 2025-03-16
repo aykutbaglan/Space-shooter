@@ -7,6 +7,7 @@ public class playerMover : MonoBehaviour
     public float speed;
     private ScoreManager scoreManager;
     private DestroyByContact destroyByContact;
+    private EnemyShipController enemyshipController;
     private Rigidbody _physic;
 
     void Start()
@@ -19,15 +20,11 @@ public class playerMover : MonoBehaviour
         {
             scoreManager = scoreManagerGo.GetComponent<ScoreManager>();
         }
-        //GameObject destroyByContactObj = GameObject.FindWithTag("DestroyByContact");
-        //if (destroyByContactObj != null)
-        //{
-        //    destroyByContact = destroyByContactObj.GetComponent<DestroyByContact>();
-        //}
-        //else
-        //{
-        //    Debug.LogError("DestroyByContact scriptine sahip obje bulunamadý! 'DestroyByContact' tag'ini kontrol et.");
-        //}
+        GameObject enemyShipGo = GameObject.FindWithTag("Enemy");
+        if (enemyShipGo != null)
+        {
+            enemyshipController = enemyShipGo.GetComponent<EnemyShipController>();
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -38,16 +35,7 @@ public class playerMover : MonoBehaviour
             {
                 enemy.TakeHealt(20, gameObject);
                 Destroy(gameObject);
-                //if (scoreManager != null)
-                //{
-                //   scoreManager.score += 50;
-                //}
             }
         }
-        //if (other.CompareTag("Asteroids") && destroyByContact != null)
-        //{
-        //    Instantiate(destroyByContact.explosion, transform.position, transform.rotation);
-        //    Destroy(gameObject);
-        //}
     }
 }
