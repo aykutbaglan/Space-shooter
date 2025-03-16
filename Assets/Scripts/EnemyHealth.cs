@@ -8,6 +8,8 @@ public class EnemyHealth : MonoBehaviour
     public int enemyHealth = 200;
     public int currentHealth;
     public Slider healthBar;
+    public Gradient gradient;
+    public Image fill;
     public EnemyShipController enemyShipController;
 
     private void Start()
@@ -31,6 +33,7 @@ public class EnemyHealth : MonoBehaviour
         if (healthBar != null)
         {
             healthBar.value = currentHealth;
+            fill.color = gradient.Evaluate(healthBar.normalizedValue);
         }
         if (currentHealth <= 0)
         {
@@ -44,6 +47,8 @@ public class EnemyHealth : MonoBehaviour
         {
             healthBar.maxValue = enemyHealth;
             healthBar.value = enemyHealth;
+
+            fill.color = gradient.Evaluate(1f);
         }
     }
 }
